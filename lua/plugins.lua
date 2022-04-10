@@ -356,6 +356,10 @@ require("packer").startup({
       requires = { 'kyazdani42/nvim-web-devicons' },
       config = [[require('config.nvim-tree')]]
     }
+
+    -- cpp
+    use({'kris2k/a.vim', ft = { 'c', 'cpp' }})
+
   end,
   config = {
     max_jobs = 16,
