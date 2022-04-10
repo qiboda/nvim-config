@@ -121,6 +121,19 @@ else
   vim.notify("clangd not found!", 'warn', {title = 'Nvim-config'})
 end
 
+if utils.executable('tsserver') then
+  lspconfig.tsserver.setup({
+    on_attach = custom_attach,
+    capabilities = capabilities,
+    filetypes = { "javascript", "javascript.jsx", "typescript", "typescript.tsx" },
+    flags = {
+      debounce_text_changes = 500,
+    },
+  })
+else
+  vim.notify("tsserver not found!", 'warn', {title = 'Nvim-config'})
+end
+
 -- set up vim-language-server
 if utils.executable('vim-language-server') then
   lspconfig.vimls.setup({
@@ -143,7 +156,7 @@ if utils.executable('bash-language-server') then
 end
 
 local sumneko_binary_path = vim.fn.exepath("lua-language-server")
-if vim.g.is_mac or vim.g.is_linux and sumneko_binary_path ~= "" then
+if vim.g.is_mac or vim.g.is_linux or vim.g.is_win and sumneko_binary_path ~= "" then
   local sumneko_root_path = vim.fn.fnamemodify(sumneko_binary_path, ":h:h:h")
 
   local runtime_path = vim.split(package.path, ";")
@@ -177,6 +190,8 @@ if vim.g.is_mac or vim.g.is_linux and sumneko_binary_path ~= "" then
     },
     capabilities = capabilities,
   })
+else
+  vim.notify("lua-language-server not found!" .. sumneko_binary_path, 'warn', {title = 'Nvim-config'})
 end
 
 -- Change diagnostic signs.
