@@ -232,6 +232,8 @@ require("packer").startup({
 
     use({ "kevinhwang91/nvim-bqf", ft = "qf", config = [[require('config.bqf')]] })
 
+    use({ "nvim-treesitter/nvim-treesitter", run = ':TSUpdate'})
+
     -- Better git commit experience
     use({"rhysd/committia.vim", opt = true, setup = [[vim.cmd('packadd committia.vim')]]})
 
