@@ -13,11 +13,6 @@ inoremap <c-u> <Esc>viwUea
 " Turn the current word into title case
 inoremap <c-t> <Esc>b~lea
 
-" Paste non-linewise text above or below current cursor,
-" see https://stackoverflow.com/a/1346777/6064933
-nnoremap <leader>p m`o<ESC>p``
-nnoremap <leader>P m`O<ESC>p``
-
 " Shortcut for faster save and quit
 nnoremap <silent> <leader>w :<C-U>update<CR>
 " Saves the file if modified and quit
@@ -145,6 +140,15 @@ nnoremap <silent> <A-j> <Cmd>call utils#SwitchLine(line('.'), 'down')<CR>
 " Move current visual-line selection up and down
 xnoremap <silent> <A-k> :<C-U>call utils#MoveSelection('up')<CR>
 xnoremap <silent> <A-j> :<C-U>call utils#MoveSelection('down')<CR>
+
+" Add newline in normal mode and cound take a count
+nnoremap <silent> <expr> OO 'm`' . v:count1 . 'O<Esc>``'
+nnoremap <silent> <expr> oo 'm`' . v:count1 . 'o<Esc>``'
+
+" Paste non-linewise text above or below current cursor,
+" see https://stackoverflow.com/a/1346777/6064933
+nnoremap <leader>p m`o<ESC>p``
+nnoremap <leader>P m`O<ESC>p``
 
 " Replace visual selection with text in register, but not contaminate the
 " register, see also https://stackoverflow.com/q/10723700/6064933.
