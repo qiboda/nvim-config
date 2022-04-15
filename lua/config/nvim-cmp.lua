@@ -30,7 +30,7 @@ cmp.setup({
     --   end,
     --   c = cmp.config.disable
     -- },
-    ['<Esc>'] = cmp.mapping.close(),
+    -- ['<Esc>'] = cmp.mapping.close(),
     ['<Tab>'] = cmp.mapping.confirm({ select = true }),
     ['<C-d>'] = cmp.mapping.scroll_docs(-4),
     ['<C-f>'] = cmp.mapping.scroll_docs(4),
