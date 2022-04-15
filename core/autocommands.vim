@@ -138,7 +138,7 @@ augroup END
 
 augroup auto_formatter
   autocmd!
-  autocmd BufWritePre * :Neoformat
+  autocmd BufWritePre * Neoformat
 augroup END
 
 augroup auto_disable_plugin
