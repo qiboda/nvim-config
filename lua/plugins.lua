@@ -180,7 +180,8 @@ require("packer").startup({
     use({"tpope/vim-commentary", event = "VimEnter"})
 
     -- Multiple cursor plugin like Sublime Text?
-    -- use 'mg979/vim-visual-multi'
+    -- use
+    use ({ 'mg979/vim-visual-multi', branch = "master" })
 
     -- Autosave files on certain events
     use({
