@@ -69,6 +69,9 @@ set showbreak=↪
 " List all matches and complete till longest common string
 set wildmode=list:longest
 
+" highlight cursor line
+set cursorline
+
 " Minimum lines to keep above and below cursor when scrolling
 set scrolloff=3
 
