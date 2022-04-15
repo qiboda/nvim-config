@@ -182,6 +182,8 @@ let g:neoformat_c_clangformat = {
 let g:neoformat_enabled_cpp = ['clangformat']
 let g:neoformat_enabled_c = ['clangformat']
 
+let g:neoformat_enabled_ts = ['prettier']
+
 """""""""""""""""""""""""vim-signify settings""""""""""""""""""""""""""""""
 " The VCS to use
 let g:signify_vcs_list = [ 'git' ]
@@ -398,7 +400,7 @@ function! s:wilder_init() abort
           \   wilder#branch(
           \     wilder#cmdline_pipeline({
           \       'language': 'python',
-          \       'fuzzy': 1,
+          \       'fuzzy': 2,
           \       'sorter': wilder#python_difflib_sorter(),
           \       'debounce': 30,
           \     }),
