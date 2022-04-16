@@ -59,3 +59,7 @@ if exists('g:fvim_loaded')
 
   FVimUIPopupMenu v:false
 endif
+
+if exists('g:neovide')
+  set guifont=MesloLGL\ NF:h13
+endif
