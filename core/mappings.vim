@@ -119,6 +119,9 @@ xnoremap c "_c
 " Remove trailing whitespace characters
 nnoremap <silent> <leader><Space> :<C-U>StripTrailingWhitespace<CR>
 
+" formatter
+nnoremap <silent> <S-A-f> :Neoformat<CR>
+
 " check the syntax group of current cursor position
 nnoremap <silent> <leader>st :<C-U>call utils#SynGroup()<CR>
 

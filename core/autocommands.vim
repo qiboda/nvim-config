@@ -136,10 +136,10 @@ augroup auto_create_dir
   autocmd BufWritePre * lua require('utils').may_create_dir()
 augroup END
 
-augroup auto_formatter
-  autocmd!
-  autocmd BufWritePre * Neoformat
-augroup END
+" augroup auto_formatter
+"   autocmd!
+"   autocmd BufWritePre * Neoformat
+" augroup END
 
 augroup auto_disable_plugin
   " disable the   syntastic   plugin if editing a file more than 700 lines long
