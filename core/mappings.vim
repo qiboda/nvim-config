@@ -148,10 +148,9 @@ xnoremap <silent> <A-j> :<C-U>call utils#MoveSelection('down')<CR>
 nnoremap <silent> <expr> OO 'm`' . v:count1 . 'O<Esc>``'
 nnoremap <silent> <expr> oo 'm`' . v:count1 . 'o<Esc>``'
 
-" Paste non-linewise text above or below current cursor,
-" see https://stackoverflow.com/a/1346777/6064933
-nnoremap <leader>p m`o<ESC>p``
-nnoremap <leader>P m`O<ESC>p``
+" Paste from system clipboard
+nnoremap <Space>p "+p
+nnoremap <Space>P "+P
 
 " Replace visual selection with text in register, but not contaminate the
 " register, see also https://stackoverflow.com/q/10723700/6064933.
