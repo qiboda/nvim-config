@@ -59,14 +59,19 @@ endif
 let g:Lf_DefaultMode = 'FullPath'
 
 " Popup window settings
-let w = float2nr(&columns * 0.8)
-if w > 140
-  let g:Lf_PopupWidth = 140
-else
-  let g:Lf_PopupWidth = w
-endif
+" let w = float2nr(&columns * 0.8)
+" if w > 200
+"   let g:Lf_PopupWidth = 200
+" else
+"   let g:Lf_PopupWidth = w
+" endif
 
-let g:Lf_PopupPosition = [0, float2nr((&columns - g:Lf_PopupWidth)/2)]
+let g:Lf_WindowPosition = 'popup'
+
+" let g:Lf_PopupPosition = [0, float2nr((&columns - g:Lf_PopupWidth)/2)]
+let g:Lf_PopupPosition = [0, 0]
+
+let g:Lf_PopupWidth = 0.75
 
 " Do not use version control tool to list files under a directory since
 " submodules are not searched by default.
