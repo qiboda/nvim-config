@@ -7,9 +7,6 @@ let g:logging_level = 'info'
 "}}
 
 "{{ Builtin variables
-" Disable Python2 support
-let g:loaded_python_provider = 0
-
 " Disable perl provider
 let g:loaded_perl_provider = 0
 
@@ -41,6 +38,10 @@ let g:vimsyn_embed = 'l'
 
 " Use English as main language
 language en_US.utf-8
+
+" use filetype.lua instead of filetype.vim
+let g:do_filetype_lua = 1
+let g:did_load_filetypes = 0
 "}}
 
 "{{ Disable loading certain plugins
