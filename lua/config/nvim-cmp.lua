@@ -10,26 +10,26 @@ cmp.setup({
     end,
   },
   mapping = {
-    -- ['<Tab>'] = {
-    --   i = function(fallback)
-    --     if cmp.visible() then
-    --       cmp.select_next_item()
-    --     else
-    --       fallback()
-    --     end
-    --   end,
-    --   c = cmp.config.disable
-  -- },
-    -- ['<S-Tab>'] = {
-    --   i = function(fallback)
-    --     if cmp.visible() then
-    --       cmp.select_prev_item()
-    --     else
-    --       fallback()
-    --     end
-    --   end,
-    --   c = cmp.config.disable
-    -- },
+   ['<C-n>'] = {
+      i = function(fallback)
+        if cmp.visible() then
+          cmp.select_next_item()
+        else
+          fallback()
+        end
+      end,
+      c = cmp.config.disable
+  },
+    ['<C-p>'] = {
+      i = function(fallback)
+        if cmp.visible() then
+          cmp.select_prev_item()
+        else
+          fallback()
+        end
+      end,
+      c = cmp.config.disable
+    },
     -- ['<Esc>'] = cmp.mapping.close(),
     ['<Tab>'] = cmp.mapping.confirm({ select = true }),
     ['<C-d>'] = cmp.mapping.scroll_docs(-4),
