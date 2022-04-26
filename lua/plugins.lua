@@ -45,6 +45,7 @@ require("packer").startup({
     use({ "neovim/nvim-lspconfig", after = "cmp-nvim-lsp", config = [[require('config.lsp')]] })
 
     if vim.g.is_mac or vim.g.is_win then
+    -- if vim.g.is_mac then
       use({ "nvim-treesitter/nvim-treesitter", event = 'BufEnter', run = ":TSUpdate", config = [[require('config.treesitter')]] })
     end
 
@@ -213,7 +214,7 @@ require("packer").startup({
     if vim.g.is_mac then
       use({ "lyokha/vim-xkbswitch", event = { "InsertEnter" } })
     elseif vim.g.is_win then
-      use({ "Neur1n/neuims", event = { "InsertEnter" } })
+      use { 'brglng/vim-im-select' }
     end
 
     -- Syntax check and make
