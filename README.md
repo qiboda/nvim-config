@@ -22,7 +22,7 @@
       <img alt="Latest release" src="https://img.shields.io/github/v/release/jdhao/nvim-config" />
     </a>
     <a href="https://github.com/neovim/neovim/releases/tag/stable">
-      <img src="https://img.shields.io/badge/Neovim-0.6.1-blueviolet.svg?style=flat-square&logo=Neovim&logoColor=green" alt="Neovim minimum version"/>
+      <img src="https://img.shields.io/badge/Neovim-0.7.0-blueviolet.svg?style=flat-square&logo=Neovim&logoColor=green" alt="Neovim minimum version"/>
     </a>
     <a href="https://github.com/jdhao/nvim-config/search?l=vim-script">
       <img src="https://img.shields.io/github/languages/top/jdhao/nvim-config" alt="Top languages"/>
@@ -40,22 +40,23 @@ This repo hosts my Nvim configuration for Linux, macOS, and Windows.
 and `ginit.vim` is the additional config file for [GUI client of Nvim](https://github.com/neovim/neovim/wiki/Related-projects#gui).
 
 My configurations are heavily documented to make it as clear as possible.
-While you can download the whole repository and use it, it is not recommended though.
+While you can clone the whole repository and use it, it is not recommended though.
 Good configurations are personal. Everyone should have his or her unique config file.
-You are encouraged to copy from this repo the part you feel useful and add it to your own Nvim config.
+You are encouraged to copy from this repo the part you want and add it to your own config.
+
+**Note that this config is tested against [Nvim v0.7.0 release](https://github.com/neovim/neovim/releases/tag/stable).
+No backward compatibility is guaranteed.**
 
 # Install and setup
 
 See [doc here](docs/README.md) on how to install Nvim's dependencies, Nvim itself,
 and how to set up on different platforms (Linux, macOS, and Windows).
 
-**This config is tested against [Nvim v0.6.1 release](https://github.com/neovim/neovim/releases/tag/stable).
-No backward compatibility is guaranteed.**
-
 # Features #
 
 + Plugin management via [Packer.nvim](https://github.com/wbthomason/packer.nvim).
-+ Code auto-completion via [nvim-cmp](https://github.com/hrsh7th/nvim-cmp) and [nvim-lspconfig](https://github.com/neovim/nvim-lspconfig).
++ Code, snippet, word auto-completion via [nvim-cmp](https://github.com/hrsh7th/nvim-cmp).
++ Language server protocol (LSP) support via [nvim-lspconfig](https://github.com/neovim/nvim-lspconfig).
 + Git integration via [vim-fugitive](https://github.com/tpope/vim-fugitive).
 + Better escaping from insert mode via [better-escape.vim](https://github.com/jdhao/better-escape.vim).
 + Ultra-fast project-wide fuzzy searching via [LeaderF](https://github.com/Yggdroot/LeaderF).
@@ -63,29 +64,29 @@ No backward compatibility is guaranteed.**
 + Faster matching pair insertion and jump via [delimitMate](https://github.com/Raimondi/delimitMate).
 + Smarter and faster matching pair management (add, replace or delete) via [vim-sandwich](https://github.com/machakann/vim-sandwich).
 + Fast buffer jump via [hop.nvim](https://github.com/phaazon/hop.nvim).
-+ Ultra fast snippet insertion via [Ultisnips](https://github.com/SirVer/ultisnips).
-+ Beautiful status line via [lualine.nvim](https://github.com/nvim-lualine/lualine.nvim).
++ Powerful snippet insertion via [Ultisnips](https://github.com/SirVer/ultisnips).
++ Beautiful statusline via [lualine.nvim](https://github.com/nvim-lualine/lualine.nvim).
 + File tree explorer via [nvim-tree.lua](https://github.com/kyazdani42/nvim-tree.lua).
 + Better quickfix list with [nvim-bqf](https://github.com/kevinhwang91/nvim-bqf).
 + Show search index and count with [nvim-hlslens](https://github.com/kevinhwang91/nvim-hlslens).
 + Command line auto-completion via [wilder.nvim](https://github.com/gelguy/wilder.nvim).
-+ Keymap display via [which-key.nvim](https://github.com/folke/which-key.nvim).
++ User-defined mapping hint via [which-key.nvim](https://github.com/folke/which-key.nvim).
 + Asynchronous code execution via [asyncrun.vim](https://github.com/skywind3000/asyncrun.vim).
 + Code highlighting via [nvim-treesitter](https://github.com/nvim-treesitter/nvim-treesitter).
 + Code editing using true nvim inside browser via [firenvim](https://github.com/glacambre/firenvim).
 + Color theme via [vim-gruvbox8](https://github.com/lifepillar/vim-gruvbox8) and other beautiful themes.
 + Markdown writing and previewing via [vim-markdown](https://github.com/plasticboy/vim-markdown) and [markdown-preview.nvim](https://github.com/iamcco/markdown-preview.nvim).
++ LaTeX editing and previewing via [vimtex](https://github.com/lervag/vimtex) <sup id="a1">[1](#f1)</sup>.
 + Animated GUI style notification via [nvim-notify](https://github.com/rcarriga/nvim-notify).
 + Smooth scroll experience via [neoscroll](https://github.com/karb94/neoscroll.nvim).
 + Tags navigation via [vista](https://github.com/liuchengxu/vista.vim).
 + Code formatting via [Neoformat](https://github.com/sbdchd/neoformat).
 + Undo management via [vim-mundo](https://github.com/simnalamburt/vim-mundo)
-+ LaTeX editing via [vimtex](https://github.com/lervag/vimtex) <sup id="a1">[1](#f1)</sup>.
 + ......
 
 # UI Demo
 
-For more UI demos, see [here](https://github.com/jdhao/nvim-config/issues/15).
+For more UI demos, check [here](https://github.com/jdhao/nvim-config/issues/15).
 
 ## Start screen with alpha-nvim
 
@@ -139,7 +140,7 @@ Go to a string starting with `se`
 
 # Shortcuts
 
-Some of the shortcuts I use frequently is listed here. In the following shortcuts, `<leader>` represents ASCII character `,`.
+Some of the shortcuts I use frequently are listed here. In the following shortcuts, `<leader>` represents ASCII character `,`.
 
 | Shortcut          | Mode          | platform        | Description                                                      |
 |-------------------|---------------|-----------------|------------------------------------------------------------------|
@@ -191,11 +192,7 @@ In addition to commands provided by various plugins, I have also created some cu
 
 # Contributing
 
-<<<<<<< HEAD
-If you find anything that can be improved, do not hesitate to point it out or create a PR.
-=======
 If you find anything that needs improving, do not hesitate to point it out or create a PR.
->>>>>>> 8059940 (update spell file)
 
 If you come across an issue, you can first use `:checkhealth` command provided by `nvim` to trouble-shoot yourself.
 Please read carefully the messages provided by health check.

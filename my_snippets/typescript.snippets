@@ -1,9 +1,14 @@
-snippet class "Description" b
-class ${1: filename} {
-	${2}
+snippet filecls "class filename" b
+class ${1:`!p snip.rv = snip.basename`} extends ${2:Base} {
+
+	Init() {}
+
+	Clear() {}
+
+	IsValid() {}
+
+	${0}
 }
 
-${0}
-
-export default ${1: filename};
+export default $1;
 endsnippet

@@ -97,7 +97,7 @@ To install it Windows, use [chocolatey](https://chocolatey.org/) or [scoop](http
 choco install universal-ctags
 
 # scoop bucket add extras
-# scoop install univeral-ctags
+# scoop install universal-ctags
 ```
 
 Set its PATH properly and make sure you can run `ctags` from command line.
@@ -142,7 +142,7 @@ we need to install a patched font from the [nerd-fonts](https://github.com/ryano
 # Install Nvim
 
 There are various ways to install Nvim depending on your system.
-Current configuration is tested against nvim v0.6.1.
+Current configuration is tested against nvim v0.7.0.
 
 ## Linux
 
