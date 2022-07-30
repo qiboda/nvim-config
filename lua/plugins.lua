@@ -32,7 +32,7 @@ packer.startup({
 
     -- nvim-cmp completion sources
     use {"hrsh7th/cmp-nvim-lsp", after = "nvim-cmp"}
-    use {"hrsh7th/cmp-nvim-lua", after = "nvim-cmp"}
+    -- use {"hrsh7th/cmp-nvim-lua", after = "nvim-cmp"}
     use {"hrsh7th/cmp-path", after = "nvim-cmp"}
     use {"hrsh7th/cmp-buffer", after = "nvim-cmp"}
     use { "hrsh7th/cmp-omni", after = "nvim-cmp" }
@@ -365,6 +365,7 @@ packer.startup({
     -- cpp
     use({'kris2k/a.vim', ft = { 'c', 'cpp' }})
 
+    use { 'ii14/emmylua-nvim', ft = 'lua' }
   end,
   config = {
     max_jobs = 16,
