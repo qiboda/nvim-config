@@ -381,9 +381,16 @@ if exists('g:started_by_firenvim') && g:started_by_firenvim
       \ }
   \ }
 
+  function! s:setup_firenvim() abort
+    set noruler noshowcmd
+    set laststatus=0 showtabline=0
+  endfunction
+
   augroup firenvim
     autocmd!
-    autocmd BufEnter *.txt setlocal filetype=markdown laststatus=0 nonumber noshowcmd noruler showtabline=1
+    autocmd FileType text call s:setup_firenvim()
+    autocmd BufNewFile github.com_*.txt set filetype=markdown
+    autocmd BufNewFile stackoverflow.com_*.txt set filetype=markdown
   augroup END
 endif
 
@@ -435,3 +442,6 @@ function! s:wilder_init() abort
     echohl Error |echomsg "Wilder.nvim missing: run :PackerSync to fix."|echohl None
   endtry
 endfunction
+
+""""""""""""""""""""""""""""""vim-auto-save settings""""""""""""""""""""""""""""""
+let g:auto_save = 1  " enable AutoSave on Vim startup

@@ -13,7 +13,7 @@ local custom_attach = function(client, bufnr)
   vim.keymap.set("n", "<C-k>", vim.lsp.buf.signature_help, opts)
   vim.keymap.set("n", "<space>wa", vim.lsp.buf.add_workspace_folder, opts)
   vim.keymap.set("n", "<space>wr", vim.lsp.buf.remove_workspace_folder, opts)
-  vim.keymap.set("n", "<space>wl", function() print(vim.inspect(vim.lsp.buf.list_workspace_folders())) end, opts)
+  vim.keymap.set("n", "<space>wl", function() inspect(vim.lsp.buf.list_workspace_folders()) end, opts)
   vim.keymap.set("n", "<space>rn", vim.lsp.buf.rename, opts)
   vim.keymap.set("n", "gr", vim.lsp.buf.references, opts)
   vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, opts)
@@ -21,10 +21,10 @@ local custom_attach = function(client, bufnr)
   vim.keymap.set("n", "<space>q", function() vim.diagnostic.setqflist({open = true}) end, opts)
   vim.keymap.set("n", "<space>ca", vim.lsp.buf.code_action, opts)
 
-  vim.api.nvim_create_autocmd("CursorHold", {
+  api.nvim_create_autocmd("CursorHold", {
     buffer=bufnr,
     callback = function()
-      local opts = {
+      local float_opts = {
         focusable = false,
         close_events = { "BufLeave", "CursorMoved", "InsertEnter", "FocusLost" },
         border = 'rounded',
@@ -36,11 +36,11 @@ local custom_attach = function(client, bufnr)
         vim.b.diagnostics_pos = { nil, nil }
       end
 
-      local cursor_pos = vim.api.nvim_win_get_cursor(0)
+      local cursor_pos = api.nvim_win_get_cursor(0)
       if (cursor_pos[1] ~= vim.b.diagnostics_pos[1] or cursor_pos[2] ~= vim.b.diagnostics_pos[2]) and
         #vim.diagnostic.get() > 0
       then
-          vim.diagnostic.open_float(nil, opts)
+          vim.diagnostic.open_float(nil, float_opts)
       end
 
       vim.b.diagnostics_pos = cursor_pos
@@ -127,19 +127,6 @@ else
   vim.notify("clangd not found!", 'warn', {title = 'Nvim-config'})
 end
 
-if utils.executable('tsserver') then
-  lspconfig.tsserver.setup({
-    on_attach = custom_attach,
-    capabilities = capabilities,
-    filetypes = { "javascript", "javascript.jsx", "typescript", "typescript.tsx" },
-    flags = {
-      debounce_text_changes = 500,
-    },
-  })
-else
-  vim.notify("tsserver not found!", 'warn', {title = 'Nvim-config'})
-end
-
 -- set up vim-language-server
 if utils.executable('vim-language-server') then
   lspconfig.vimls.setup({
@@ -161,43 +148,35 @@ if utils.executable('bash-language-server') then
   })
 end
 
-local sumneko_binary_path = vim.fn.exepath("lua-language-server")
-if vim.g.is_mac or vim.g.is_linux or vim.g.is_win and sumneko_binary_path ~= "" then
-  local sumneko_root_path = vim.fn.fnamemodify(sumneko_binary_path, ":h:h:h")
-
-  local runtime_path = vim.split(package.path, ";")
-  table.insert(runtime_path, "lua/?.lua")
-  table.insert(runtime_path, "lua/?/init.lua")
-
+if utils.executable("lua-language-server") then
+  -- settings for lua-language-server can be found on https://github.com/sumneko/lua-language-server/wiki/Settings .
   lspconfig.sumneko_lua.setup({
     on_attach = custom_attach,
-    cmd = { sumneko_binary_path, "-E", sumneko_root_path .. "/main.lua" },
     settings = {
       Lua = {
         runtime = {
           -- Tell the language server which version of Lua you're using (most likely LuaJIT in the case of Neovim)
           version = "LuaJIT",
-          -- Setup your lua path
-          path = runtime_path,
         },
         diagnostics = {
           -- Get the language server to recognize the `vim` global
           globals = { "vim" },
         },
         workspace = {
-          -- Make the server aware of Neovim runtime files
-          library = api.nvim_get_runtime_file("", true),
-        },
-        -- Do not send telemetry data containing a randomized but unique identifier
-        telemetry = {
-          enable = false,
+          -- Make the server aware of Neovim runtime files,
+          -- see also https://github.com/sumneko/lua-language-server/wiki/Libraries#link-to-workspace .
+          -- Lua-dev.nvim also has similar settings for sumneko lua, https://github.com/folke/lua-dev.nvim/blob/main/lua/lua-dev/sumneko.lua .
+          library = {
+            fn.stdpath('data') .. "/site/pack/packer/opt/emmylua-nvim",
+            fn.stdpath('config'),
+          },
+          maxPreload = 2000,
+          preloadFileSize = 50000,
         },
       },
     },
     capabilities = capabilities,
   })
-else
-  vim.notify("lua-language-server not found!" .. sumneko_binary_path, 'warn', {title = 'Nvim-config'})
 end
 
 -- Change diagnostic signs.

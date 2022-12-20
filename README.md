@@ -36,7 +36,7 @@
 # Introduction
 
 This repo hosts my Nvim configuration for Linux, macOS, and Windows.
-`init.vim` is the config entry point for terminal Nvim,
+`init.lua` is the config entry point for terminal Nvim,
 and `ginit.vim` is the additional config file for [GUI client of Nvim](https://github.com/neovim/neovim/wiki/Related-projects#gui).
 
 My configurations are heavily documented to make it as clear as possible.
@@ -88,16 +88,16 @@ and how to set up on different platforms (Linux, macOS, and Windows).
 
 For more UI demos, check [here](https://github.com/jdhao/nvim-config/issues/15).
 
-## Start screen with alpha-nvim
+## Start screen with dashboard-nvim
 
 <p align="center">
-<img src="https://user-images.githubusercontent.com/16662357/139459989-0537ded4-c119-4749-99bf-b551ca1ba118.jpg" width="800">
+<img src="https://user-images.githubusercontent.com/16662357/183256752-fb23b215-a6b8-4646-beed-9999f52d53f1.png" width="800">
 </p>
 
-## fuzzy finding using LeaderF
+## File fuzzy finding using LeaderF
 
 <p align="center">
-<img src="https://user-images.githubusercontent.com/16662357/139462025-7bce98c5-d2d5-413f-9659-20545865cdca.gif" width="800">
+<img src="https://user-images.githubusercontent.com/16662357/183257017-2d9d7605-3c4b-4e1d-8955-30998f9b6f28.gif" width="800">
 </p>
 
 ## Code autocompletion with nvim-cmp
@@ -142,43 +142,46 @@ Go to a string starting with `se`
 
 Some of the shortcuts I use frequently are listed here. In the following shortcuts, `<leader>` represents ASCII character `,`.
 
-| Shortcut          | Mode          | platform        | Description                                                      |
-|-------------------|---------------|-----------------|------------------------------------------------------------------|
-| `<leader>ff`      | Normal        | Linux/macOS/Win | Fuzzy file searching in a floating window                        |
-| `<leader>fh`      | Normal        | Linux/macOS/Win | Fuzzy help file grepping in a floating window                    |
-| `<leader>fg`      | Normal        | Linux/macOS/Win | Fuzzy project-wide grepping in a floating window                 |
-| `<leader>ft`      | Normal        | Linux/macOS/Win | Fuzzy buffer tag searching in a floating window                  |
-| `<leader>fb`      | Normal        | Linux/macOS/Win | Fuzzy buffer switching in a floating window                      |
-| `<leader><Space>` | Normal        | Linux/macOS/Win | Remove trailing white spaces                                     |
-| `<leader>v`       | Normal        | Linux/macOS/Win | Reselect last pasted text                                        |
-| `<leader>ev`      | Normal        | Linux/macOS/Win | Edit Nvim config in a new tabpage                                |
-| `<leader>sv`      | Normal        | Linux/macOS/Win | Reload Nvim config                                               |
-| `<leader>st`      | Normal        | Linux/macOS/Win | Show highlight group for cursor text                             |
-| `<leader>q`       | Normal        | Linux/macOS/Win | Quit current window                                              |
-| `<leader>Q`       | Normal        | Linux/macOS/Win | Quit all window and close Nvim                                   |
-| `<leader>w`       | Normal        | Linux/macOS/Win | Save current buffer content                                      |
-| `<leader>y`       | Normal        | Linux/macOS/Win | Copy the content of entire buffer to default register            |
-| `<leader>cl`      | Normal        | Linux/macOS/Win | Toggle cursor column                                             |
-| `<leader>cd`      | Normal        | Linux/macOS/Win | Change current working directory to to the dir of current buffer |
-| `<space>t`        | Normal        | Linux/macOS/Win | Toggle tag window (show project tags in the right window)        |
-| `<leader>gs`      | Normal        | Linux/macOS/Win | Show Git status result                                           |
-| `<leader>gw`      | Normal        | Linux/macOS/Win | Run Git add for current file                                     |
-| `<leader>gd`      | Normal        | Linux/macOS/Win | Run git diff for current file                                    |
-| `<leader>gc`      | Normal        | Linux/macOS/Win | Run git commit                                                   |
-| `<leader>gpl`     | Normal        | Linux/macOS/Win | Run git pull                                                     |
-| `<leader>gpu`     | Normal        | Linux/macOS/Win | Run git push                                                     |
-| `<F9>`            | Normal        | Linux/macOS/Win | Run current source file (for Python, C++)                        |
-| `<F11>`           | Normal        | Linux/macOS/Win | Toggle spell checking                                            |
-| `<F12>`           | Normal        | Linux/macOS/Win | Toggle paste mode                                                |
-| `\x`              | Normal        | Linux/macOS/Win | Close location or quickfix window                                |
-| `\d`              | Normal        | Linux/macOS/Win | Close current buffer and go to previous buffer                   |
-| `{count}gb`       | Normal        | Linux/macOS/Win | Go to buffer {count}  or next buffer in the buffer list.         |
-| `Alt-m`           | Normal        | macOS/Win       | Markdown previewing in system browser                            |
-| `Alt-Shift-m`     | Normal        | macOS/Win       | Stopping Markdown previewing in system browser                   |
-| `ob`              | Normal/Visual | macOS/Win       | Open link under cursor or search visual selection                |
-| `ctrl-u`          | Insert        | Linux/macOS/Win | Turn word under cursor to upper case                             |
-| `ctrl-t`          | Insert        | Linux/macOS/Win | Turn word under cursor to title case                             |
-| `jk`              | Insert        | Linux/macOS/Win | Return to Normal mode without lagging                            |
+| Shortcut          | Mode          | platform        | Description                                                              |
+|-------------------|---------------|-----------------|--------------------------------------------------------------------------|
+| `<leader>ff`      | Normal        | Linux/macOS/Win | Fuzzy file searching in a floating window                                |
+| `<leader>fh`      | Normal        | Linux/macOS/Win | Fuzzy help file grepping in a floating window                            |
+| `<leader>fg`      | Normal        | Linux/macOS/Win | Fuzzy project-wide grepping in a floating window                         |
+| `<leader>ft`      | Normal        | Linux/macOS/Win | Fuzzy buffer tag searching in a floating window                          |
+| `<leader>fb`      | Normal        | Linux/macOS/Win | Fuzzy buffer switching in a floating window                              |
+| `<leader><Space>` | Normal        | Linux/macOS/Win | Remove trailing white spaces                                             |
+| `<leader>v`       | Normal        | Linux/macOS/Win | Reselect last pasted text                                                |
+| `<leader>ev`      | Normal        | Linux/macOS/Win | Edit Nvim config in a new tabpage                                        |
+| `<leader>sv`      | Normal        | Linux/macOS/Win | Reload Nvim config                                                       |
+| `<leader>st`      | Normal        | Linux/macOS/Win | Show highlight group for cursor text                                     |
+| `<leader>q`       | Normal        | Linux/macOS/Win | Quit current window                                                      |
+| `<leader>Q`       | Normal        | Linux/macOS/Win | Quit all window and close Nvim                                           |
+| `<leader>w`       | Normal        | Linux/macOS/Win | Save current buffer content                                              |
+| `<leader>y`       | Normal        | Linux/macOS/Win | Copy the content of entire buffer to default register                    |
+| `<leader>cl`      | Normal        | Linux/macOS/Win | Toggle cursor column                                                     |
+| `<leader>cd`      | Normal        | Linux/macOS/Win | Change current working directory to to the dir of current buffer         |
+| `<space>t`        | Normal        | Linux/macOS/Win | Toggle tag window (show project tags in the right window)                |
+| `<leader>gs`      | Normal        | Linux/macOS/Win | Show Git status result                                                   |
+| `<leader>gw`      | Normal        | Linux/macOS/Win | Run Git add for current file                                             |
+| `<leader>gd`      | Normal        | Linux/macOS/Win | Run git diff for current file                                            |
+| `<leader>gc`      | Normal        | Linux/macOS/Win | Run git commit                                                           |
+| `<leader>gpl`     | Normal        | Linux/macOS/Win | Run git pull                                                             |
+| `<leader>gpu`     | Normal        | Linux/macOS/Win | Run git push                                                             |
+| `<F9>`            | Normal        | Linux/macOS/Win | Compile&run current source file (for C++, LaTeX, Lua, Python)            |
+| `<F11>`           | Normal        | Linux/macOS/Win | Toggle spell checking                                                    |
+| `<F12>`           | Normal        | Linux/macOS/Win | Toggle paste mode                                                        |
+| `\x`              | Normal        | Linux/macOS/Win | Close location or quickfix window                                        |
+| `\d`              | Normal        | Linux/macOS/Win | Close current buffer and go to previous buffer                           |
+| `{count}gb`       | Normal        | Linux/macOS/Win | Go to buffer `{count}` or next buffer in the buffer list.                |
+| `{operator}iB`    | Normal        | Linux/macOS/Win | Operate in the whole buffer, `{operator}` can be `v`, `y`, `c`, `d` etc. |
+| `Alt-k`           | Normal        | Linux/macOS/Win | Move current line or selected lines up                                   |
+| `Alt-j`           | Normal        | Linux/macOS/Win | Move current line or selected lines down                                 |
+| `Alt-m`           | Normal        | macOS/Win       | Markdown previewing in system browser                                    |
+| `Alt-Shift-m`     | Normal        | macOS/Win       | Stopping Markdown previewing in system browser                           |
+| `ob`              | Normal/Visual | macOS/Win       | Open link under cursor or search visual selection                        |
+| `ctrl-u`          | Insert        | Linux/macOS/Win | Turn word under cursor to upper case                                     |
+| `ctrl-t`          | Insert        | Linux/macOS/Win | Turn word under cursor to title case                                     |
+| `jk`              | Insert        | Linux/macOS/Win | Return to Normal mode without lagging                                    |
 
 # Custom commands
 
